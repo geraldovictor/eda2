@@ -1,0 +1,9 @@
+Uma árvore binária é uma estrutura onde se tem uma raiz que
+tem o endereço de memória do elemento do "meio", e do lado
+direito temos os elementos de maiores valores e do lado esquerdo
+temos os elementos de menores valores
+temos também em cada no o endereço das chaves que ficam à direita de
+cada nó.
+para inicializar a lista devemos fazer o primeiro no apontar para nulo
+para em seguida podermos utilizar esse endereço de memoria
+para implementação da função.
