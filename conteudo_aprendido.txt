@@ -2,8 +2,73 @@ Uma árvore binária é uma estrutura onde se tem uma raiz que
 tem o endereço de memória do elemento do "meio", e do lado
 direito temos os elementos de maiores valores e do lado esquerdo
 temos os elementos de menores valores
-temos também em cada no o endereço das chaves que ficam à direita de
+temos também em cada no o endereço das nos que ficam à direita de
 cada nó.
-para inicializar a lista devemos fazer o primeiro no apontar para nulo
-para em seguida podermos utilizar esse endereço de memoria
-para implementação da função.
+
+O primeiro nó é a raiz e o ultimo nó é a folha
+
+A altura de uma arvore é a distancia do no raiz até as folhas
+
+A profundidade é a distancia dos nos folhas até o no raiz
+
+Para inicializar a arvore devemos fazer o raiz do no apontar para nulo
+em seguida para adicionar criamos um novo nó que recebe como parâmetro
+a chave dentro da criação de um no alocamos esse novo nó do tipo PONT
+esse novo no tem que seus filhos apontam para nulo (filhos da direita e da esquerda)
+e o valor que foi passado para essa função qe é o da chave
+Para adicionar usamos uma função que vê se o elemento está apontando pra nulo
+Se estiver quer dizer que é o primeiro elemento
+Então essa função retorna o proprio no
+
+-------------------------------------------------
+Aula 16/08
+
+algoritmo de ordenação estável:
+é o que mantem ordem relativa dos elementos estável
+ex: quando quero manter uma ordem alfabetica e em seguida ordenar pelos numeros
+
+typedef int Item;
+#define key(A) (A)
+#define less(A,B) (key(A)<key(B))
+#define exch(A,B)
+#define compexch(A,B) {less(B,A)exch(A,B)}
+void selectionSort(item *v, int l, int r){
+int i;
+  for(i=l; i<r ; i++){
+    int menor=i;
+    for(j=i+1; j<=r ; j++){
+      if(less(v[j],v[menor]))
+        menor=j;
+    }
+    exch(v[menor, v[i]]);
+  }
+}
+
+void insertionSortSimple(Item *V, int l, int r){
+int i , j;
+for(i=l+1; i<=r; i++){
+  for(j=i; j>l ;j--){
+  compexch(v[j-1], v[j]);
+  }
+}
+}
+
+void InsertionSort(Item *V, int l, int r){
+  int i,j;
+  for (i=r; i>=l; i--) compexch(v[i],v[i-1]);
+  for (i=l+1; i<=r ; i++){
+  Item menor = v[i], j=i;
+    while(less(menor, v[j-1])){
+      v[j]=v[j-1];
+      j--;
+    }
+    v[j]=menor;  
+  }
+}
+como inserir os elementos ordenadamente
+
+por exemplo 2 32 4 56 53 423 35 3 5
+
+2 4 32
+
+void InsertionSort

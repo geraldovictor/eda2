@@ -6,15 +6,15 @@
 typedef int bool;
 typedef int TIPOCHAVE;
 
-typedef struct aux{
+typedef struct aux{ //
   TIPOCHAVE chave;
   /* Dados armazenados vão aqui */
   struct aux *esq, *dir;
 } NO;
+typedef NO *PONT;
 PONT inicializa(){
   return (NULL);
 }
-typedef NO *PONT;
 
 PONT adiciona(PONT raiz, PONT no){
   if(raiz == NULL) return(no);
