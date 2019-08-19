@@ -36,21 +36,21 @@ void selectionSort(item *v, int l, int r){
 int i;
   for(i=l; i<r ; i++){
     int menor=i;
-    for(j=i+1; j<=r ; j++){
+    for(j=i+1; j<r ; j++){
       if(less(v[j],v[menor]))
         menor=j;
     }
-    exch(v[menor, v[i]]);
+    exch(v[menor], v[i]]);
   }
 }
 
 void insertionSortSimple(Item *V, int l, int r){
-int i , j;
-for(i=l+1; i<=r; i++){
-  for(j=i; j>l ;j--){
-  compexch(v[j-1], v[j]);
+  int i , j;
+  for(i=l+1; i<r; i++){
+    for(j=i; j>l ;j--){
+      compexch(v[j-1], v[j]);
+    }
   }
-}
 }
 
 void InsertionSort(Item *V, int l, int r){
@@ -62,7 +62,7 @@ void InsertionSort(Item *V, int l, int r){
       v[j]=v[j-1];
       j--;
     }
-    v[j]=menor;  
+    v[j]=menor;
   }
 }
 como inserir os elementos ordenadamente
@@ -70,5 +70,3 @@ como inserir os elementos ordenadamente
 por exemplo 2 32 4 56 53 423 35 3 5
 
 2 4 32
-
-void InsertionSort
