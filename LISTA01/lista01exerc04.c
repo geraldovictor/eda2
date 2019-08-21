@@ -53,6 +53,13 @@ int main(){
     }
   }
   scanf(" %c", &posi);
+  if(posi=='D'){
+    matriz_arv[bases_arvore-1][9]='L';
+    matriz_arv[bases_arvore-2][9]='L';
+  }else if(posi=='E'){
+    matriz_arv[bases_arvore-1][3]='L';
+    matriz_arv[bases_arvore-2][3]='L';
+  }
   for(int i=0 ; i < bases_arvore; i++){ //colocando os troncos
     matriz_arv[i][4]= '|';
     matriz_arv[i][5]= '|';
