@@ -1,14 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void ultrapassa(int *v, int i, int limite,  int  soma){ //qual o caso base?
+void ultrapassa(int *v, int i, int limite,  int soma){ //qual o caso base?
 
   soma+= v[i];
   //enquanto a soma não passa o limite
   if(soma>limite){
-    ultrapassa(v,i+1,limite,soma);
-    printf("%d",v[i]);
-  }else{
+    ultrapassa(v,i+1,limite,0);
+    printf("%d\n",v[i]);
+  }else if(soma<=limite&&v[i]!=0){
     ultrapassa(v,i+1,limite,soma);
   }
   // if(v[i]){ //se ultrapassar chama a função novamente
@@ -29,6 +29,7 @@ int main(int argc, char const *argv[]) {
       scanf("%d", &v[i]);
     }
   scanf("%d",&limite);
-  ultrapassa(v,0,limite,&soma);
+  ultrapassa(v,0,limite,soma);
+  free(v);
   return 0;
 }
