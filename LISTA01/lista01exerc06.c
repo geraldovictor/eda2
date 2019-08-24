@@ -39,7 +39,7 @@ void compexch(int v[], int j){
 int main(int argc, char const *argv[]) {
   int n=1,i=0;
   int *vetor;
-  vetor = malloc(n*sizeof(int));
+  vetor = malloc(sizeof(int));
   while(scanf("%d", &vetor[i])!=EOF){
     i++;
     n++;
