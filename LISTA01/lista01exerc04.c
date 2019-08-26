@@ -116,7 +116,6 @@ int main(){
         imprime(matriz_arv,linha_atual);
       }else{
         printf("**beep**\n");
-        break;
       }
     }else if(comandos[i]=='B'){
       if(lado_atual=='E'&&matriz_arv[linha_atual][4]=='|'){

@@ -76,17 +76,16 @@ aula 03 19/08
 
 static int separa(int *V, int l, int r){ //função static equilave a private em relação a OO
   int c = v[r];
-  int j=l , k=0;
+  int j=l ;
   for(int i=l; i <r ; i++){
-  if(lesseq(V[i],c)) exch (v[i],v[j])
+  if(lesseq(V[i],c)) exch (v[i],v[j]);
   j++;
   /*se o valor da minha posição atual for menor ou igual a esse meu pivô
   soma 1 no contador
   senão joga esse elemento pra ultima se não
   */
-
   }
-  exch(v[p], v[r]);
+  exch(v[r], v[j]);
   return j;
 }
 void quicksort(int *V, int l, int r){ // complexidade nlog n de casos médio , para aumentar a probabilidade de de ser n log n vc pega r, l e r+l/2 e usa a madianacomo pivô
@@ -134,4 +133,67 @@ int acha_menor(Item *v, int menor, int l, int r){
 void sort(Item *v, l,r){
   quicksort(v,l,r);
   insertion(v,l,r);
+}
+
+---------------------------
+aula 26/08
+
+void eec(int i, Item *v, int l, int r){
+  compexch(v[l],v[r]);//mediana
+  compexch(v((r+l/2),v[l]));
+  compexch(v[r],v[l]);
+  int j = separa(v,l,r);
+  if(j==i) return;
+  if(j<i) {
+    eec(i,v,j+1,int r);
+  }else{
+    eec(i,v,l,j-1);
+  }
+}
+
+
+// implementar achar os maiores ou menores em intervalos
+// implementar os que mais aparecem mais da metade das vezes
+
+
+void mergeAB(Item *c, Item *A, int M, Item *B, int N){
+  /*
+  int mesclado[M+N];
+  if(M)
+  for(int i =0 ; )
+  */
+  int k=0, i = 0, j =0;
+  while(i<M&&j<N){
+    if(lesseq(A[i],B[j])){
+      *c[k]=A[i]; i++ , k++;
+    }else{
+      *c[k]=B[j]; j++, k++;
+    }
+  }
+  while(i<M){
+    *c[k]=A[i];
+    i++;
+    k++;
+  }
+  while(i<N){
+    *c[k]=B[j];
+    j++;
+    k++;
+  }
+}
+void merge(Item *v, int l, int meio , int r){
+  Item *c = malloc(sizeof(Item));
+  mergeAB(c,&v[l],(meio-l+1),(r-meio));
+  int k = 0; i =l;
+  while(i<=r){
+    v[i]= c[k]; i++, k++;
+
+  }
+  free(c);
+}
+void mergeSort(Item *v, int l, int r){ //custo nlog n 
+  if(l==r) return;
+  int meio =(l+r)/2;
+  mergesort(v,l,meio);
+  mergesort(v,meio+1,r);
 }
