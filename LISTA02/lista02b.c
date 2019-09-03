@@ -142,5 +142,6 @@ int main(int argc, char const *argv[]) {
       printf("sim\n");
     }
   }
+  free(vetor);
   return 0;
 }
