@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <ctype.h>
 
 struct Node{
   char cidade[26];
@@ -24,7 +23,8 @@ void insere_final(char *cidade, node *LISTA){
     strcpy(novo->cidade, cidade);
     novo->prox = NULL;
   }else{
-    node *temp;
+    node *temp = malloc (sizeof(node));
+    if(temp == NULL) printf("Falha na alocação!!!\n");
     temp = LISTA->prox;
     while(temp->prox!=NULL){
       temp=temp->prox;
@@ -34,10 +34,13 @@ void insere_final(char *cidade, node *LISTA){
     novo->prox=NULL;
   }
 }
-void remove(node *LISTA){
+node* remove_atual(node *atual, node *LISTA){
   node *newHead = malloc(sizeof(node));
-  if(novo == NULL) printf("Falha na alocação!!!\n");
-  newHead
+  if(newHead == NULL) printf("Falha na alocação!!!\n");
+  newHead=atual->prox;
+  free(LISTA->prox);
+  LISTA->prox=newHead;
+  return newHead;
 }
 int main(int argc, char const *argv[]) {
   int i =0;
@@ -48,28 +51,22 @@ int main(int argc, char const *argv[]) {
   while(scanf("%s",cidade )!=EOF){
     insere_final(cidade,LISTA);
   }
-  // node *teste = malloc(sizeof(node));
-  // if(teste == NULL) printf("Falha na alocação!!!\n");
-  // teste = LISTA->prox;
-  // while(teste!=NULL){
-  //     printf("%s\n", teste->cidade);
-  //     teste= teste->prox;
-  // }
 
   node *atual= malloc (sizeof(node));
   if(atual == NULL) printf("Falha na alocação!!!\n");
-  atual = LISTA->prox;
+  atual=LISTA->prox;
+
   while(atual!=NULL){
     if(i==0){
       printf("%s\n",atual->cidade);
       i++;
       ultima=atual->cidade[strlen(atual->cidade)-1];
-      atual = atual->prox;
+      atual=remove_atual(atual,LISTA);
     }else{
       primeira=atual->cidade[0];
-      if(primeira==toupper(ultima)){
-        insere_final(atual->cidade,atual);
-        atual = atual->prox;
+      if(primeira==ultima-32){
+        insere_final(atual->cidade,LISTA);
+        atual= remove_atual(atual,LISTA);
         printf("%s\n",atual->cidade);
         ultima=atual->cidade[strlen(atual->cidade)-1];
         atual = atual->prox;
@@ -77,9 +74,10 @@ int main(int argc, char const *argv[]) {
       }else{
         printf("%s\n",atual->cidade );
         ultima=atual->cidade[strlen(atual->cidade)-1];
-        atual = atual->prox;
+        atual=remove_atual(atual,LISTA);
       }
     }
   }
+
   return 0;
 }

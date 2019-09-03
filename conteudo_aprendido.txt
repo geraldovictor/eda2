@@ -88,6 +88,7 @@ static int separa(int *V, int l, int r){ //função static equilave a private em
   exch(v[r], v[j]);
   return j;
 }
+quick não é estável
 void quicksort(int *V, int l, int r){ // complexidade nlog n de casos médio , para aumentar a probabilidade de de ser n log n vc pega r, l e r+l/2 e usa a madianacomo pivô
   compexch(v[l],v[r]);//mediana
   compexch(v[(r+l/2),v[l]]);
@@ -165,35 +166,82 @@ void mergeAB(Item *c, Item *A, int M, Item *B, int N){
   int k=0, i = 0, j =0;
   while(i<M&&j<N){
     if(lesseq(A[i],B[j])){
-      *c[k]=A[i]; i++ , k++;
+      c[k]=A[i]; i++ , k++;
     }else{
-      *c[k]=B[j]; j++, k++;
+      c[k]=B[j]; j++, k++;
     }
   }
   while(i<M){
-    *c[k]=A[i];
+    c[k]=A[i];
     i++;
     k++;
   }
   while(i<N){
-    *c[k]=B[j];
+    c[k]=B[j];
     j++;
     k++;
   }
 }
 void merge(Item *v, int l, int meio , int r){
-  Item *c = malloc(sizeof(Item));
-  mergeAB(c,&v[l],(meio-l+1),(r-meio));
+  Item *c = malloc(sizeof(Item)*(r-l+1));
+  mergeAB(c,&v[l],(meio-l+1),&v[q+1],(r-(meio+1)+1);
   int k = 0; i =l;
-  while(i<=r){
-    v[i]= c[k]; i++, k++;
+  while(i<r-l+1){
+    v[l]= c[i]; i++; l++;
 
   }
   free(c);
 }
-void mergeSort(Item *v, int l, int r){ //custo nlog n 
+é ou não é estável
+void mergeSort(Item *v, int l, int r){ //custo nlog n
   if(l==r) return;
   int meio =(l+r)/2;
   mergesort(v,l,meio);
   mergesort(v,meio+1,r);
+  merge(v,l,meio,r);
 }
+um ponteiro para int tem 8 bytes
+long d;// 8bytes
+shorte 2 bytes;
+int a: // 4 8bytes
+char b; // 1 byte
+int a , b;
+short int *c=&a, *d = &b;
+
+c[0]=3;
+c[1]=8;
+d[0]=7;
+d[1]=4;
+
+a
+c[0]     c[1]
+--------------
+|  3   |  8  |
+--------------
+b
+d[0]     d[1]
+--------------
+|  7   |  4  |
+--------------
+
+a = a+b;
+
+void fqqr(int **a){
+  a==0;
+  if(a==NULL)
+  *a=malloc(sizeof(int)*100);
+}
+
+int main(){
+  int *x=NULL;
+  fqqr(&x);
+  printf("%d" x);
+}
+
+void mergeAB(int *c, int *a, int m, int *b, int m){
+  int i=0, j=0,k=0;
+  while(i<m &j<n){
+    if(lesseq(a[i],b[j])) *c = a[i]; (c++) ; i++;
+  }
+}
+quando usa o indice do vetor não precisa colocar *;
