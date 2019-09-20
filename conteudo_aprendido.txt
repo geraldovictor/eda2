@@ -245,3 +245,14 @@ void mergeAB(int *c, int *a, int m, int *b, int m){
   }
 }
 quando usa o indice do vetor não precisa colocar *;
+
+-----------------------------------------
+Tabela Hash
+
+Colisões são coisas que tem que acontecer(mesmo indice)
+
+Algumas solução possíveis para tratar Colisões
+criar listas encadeadas na posição em que há colisões
+vetor proximo que estiver vazio (se tiver concentrado no final custa próximo de n)
+outra tabela Hash
+uma arvore binaria
