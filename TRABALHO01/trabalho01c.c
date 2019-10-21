@@ -235,6 +235,157 @@
 //                         }
 //                     }
 //                 }
+//                 if(posi==1) break;
+//             }
+//             if (posi == -1)
+//                 printf("Nao vou estar la\n");
+//         }
+//     }
+//     for (int i = 0; i < n; i++)
+//     {
+//         free(vetor_n[i]);
+//     }
+//     free(vetor_n);
+//     free(vetor_m);
+//     free(num);
+
+//     return 0;
+// }
+// int main(int argc, char const *argv[])
+// {
+//     int n, m, j, posi, lugares, num, num_aux;
+//     scanf("%d", &n); //vizinhanças
+//     scanf("%d", &m); //lugares que ele ja esteve
+//     int num_m[m];
+//     scanf("%d", &j); //lugar que ele vai visitar
+//     int *vetor_m = malloc(2000 * sizeof(int));
+//     for (int i = 0; i < 2000; i++)
+//     {
+//         vetor_m[i] = -1;
+//     }
+//     int **vetor_n = malloc(2000 * sizeof(int *));
+//     for (int i = 0; i < 2000; i++)
+//     {
+//         vetor_n[i] = calloc(1000000, sizeof(int));
+//     }
+//     for (int i = 0; i < 2000; i++)
+//     {
+//         vetor_n[i][0] = -1;
+//     }
+
+//     for (int i = 0; i < n; i++)
+//     {
+//         scanf("%d", &num);
+//         for (int j = 0; j < num; j++)
+//         {
+//             scanf("%d", &num_aux);
+//             vetor_n[i][num_aux] = num_aux;
+//         }
+//     }
+//     for (int i = 0; i < m; i++)
+//     {
+//         scanf("%d", &num_m[i]);
+//         vetor_m[num_m[i]] = num_m[i];
+//     }
+//     for (int i = 0; i < j; i++)
+//     {
+//         posi = -1;
+//         scanf("%d", &lugares);
+//         if (vetor_m[lugares] == lugares && vetor_m[lugares] != -1)
+//         {
+//             printf("Eu vou estar la\n");
+//         }
+//         else
+//         {
+//             for (int k = 0; k < m; k++)
+//             {
+//                 //para cada posição lugar que julius esteve veja quais são visinhos
+//                 //se algum desses lugares for visinho "eu vou estar la"
+//                 if (num_m[k] < n)
+//                 {
+//                     if (lugares == vetor_n[num_m[k]][lugares])
+//                     {
+//                         printf("Eu vou estar la\n");
+//                         posi = 1;
+//                         break;
+//                     }
+//                 }
+//             }
+//             if (posi == -1)
+//                 printf("Nao vou estar la\n");
+//         }
+//     }
+//     for (int i = 0; i < 2000; i++)
+//     {
+//         free(vetor_n[i]);
+//     }
+//     free(vetor_n);
+//     free(vetor_m);
+
+//     return 0;
+// }
+// int main(int argc, char const *argv[])
+// {
+//     int n, m, j, posi, lugares;
+//     scanf("%d", &n); //vizinhanças
+//     int *num = malloc(n * sizeof(int));
+//     scanf("%d", &m); //lugares que ele ja esteve
+//     scanf("%d", &j); //lugar que ele vai visitar
+//     int *vetor_m = malloc(m * sizeof(int));
+//     int **vetor_n = malloc(n * sizeof(int *));
+
+//     for (int i = 0; i < n; i++)
+//     {
+//         scanf("%d", &num[i]);
+//         for (int k = 0; k < num[i]; k++)
+//         {
+//             vetor_n[i] = malloc(num[i] * sizeof(int));
+//         }
+//         for (int k = 0; k < num[i]; k++)
+//         {
+//             scanf("%d", &vetor_n[i][k]);
+//         }
+//     }
+//     for (int i = 0; i < m; i++)
+//     {
+//         scanf("%d", &vetor_m[i]);
+//     }
+//     mergesort(0, m, vetor_m);
+//     // for (size_t i = 0; i < m; i++)
+//     // {
+//     //     printf("%d ",vetor_m[i]);
+//     // }
+//     // printf("\n");
+
+//     // printf("%d\n", buscaBinaria(vetor_m,m,8));
+
+//     for (int i = 0; i < j; i++)
+//     {
+//         scanf("%d", &lugares);
+//         posi = buscaBinaria(vetor_m, m, lugares);
+//         if (posi != -1)
+//         {
+//             printf("Eu vou estar la\n");
+//         }
+//         else
+//         {
+//             for (int k = 0; k < m; k++)
+//             {
+//                 //para cada posição lugar que julius esteve veja quais são visinhos
+//                 //se algum desses lugares for visinho "eu vou estar la"
+//                 if (vetor_m[k] < n)
+//                 {
+//                     for (int l = 0; l < num[vetor_m[k]]; l++)
+//                     {
+//                         if (lugares == vetor_n[vetor_m[k]][l])
+//                         {
+//                             printf("Eu vou estar la\n");
+//                             posi = 1;
+//                             break;
+//                         }
+//                     }
+//                 }
+//                 if(posi==1) break;
 //             }
 //             if (posi == -1)
 //                 printf("Nao vou estar la\n");
@@ -252,70 +403,62 @@
 // }
 int main(int argc, char const *argv[])
 {
-    int n, m, j, posi, lugares, num, num_aux;
+    int n, m, j, posi, num_aux, lugar;
     scanf("%d", &n); //vizinhanças
+    int *num = malloc(n * sizeof(int));
     scanf("%d", &m); //lugares que ele ja esteve
-    int num_m[m];
     scanf("%d", &j); //lugar que ele vai visitar
     int *vetor_m = malloc(2000 * sizeof(int));
     for (int i = 0; i < 2000; i++)
     {
         vetor_m[i] = -1;
     }
-    int **vetor_n = malloc(2000 * sizeof(int *));
-    for (int i = 0; i < 2000; i++)
-    {
-        vetor_n[i] = malloc(1000000 * sizeof(int));
-    }
+    int **vetor_n = malloc(n * sizeof(int *));
 
     for (int i = 0; i < n; i++)
     {
-        scanf("%d", &num);
-        for (int j = 0; j < num; j++)
+        scanf("%d", &num[i]);
+        for (int k = 0; k < num[i]; k++)
         {
-            scanf("%d", &num_aux);
-            vetor_n[i][num_aux] = num_aux;
+            vetor_n[i] = malloc(num[i] * sizeof(int));
+        }
+        for (int k = 0; k < num[i]; k++)
+        {
+            scanf("%d", &vetor_n[i][k]);
         }
     }
     for (int i = 0; i < m; i++)
     {
-        scanf("%d", &num_m[i]);
-        vetor_m[num_m[i]] = num_m[i];
+        scanf("%d", &num_aux);
+        vetor_m[num_aux] = num_aux;
+        if (num_aux < n)
+        {
+            for (int j = 0; j < num[num_aux]; j++)
+            {
+                //para cada valor da coluna insira no vetor_m
+                vetor_m[vetor_n[num_aux][j]] = vetor_n[num_aux][j];
+            }
+        }
     }
     for (int i = 0; i < j; i++)
     {
-        posi = -1;
-        scanf("%d", &lugares);
-        if (vetor_m[lugares] == lugares && vetor_m[lugares]!= -1)
+        scanf("%d", &lugar);
+        if (vetor_m[lugar] == lugar)
         {
             printf("Eu vou estar la\n");
         }
         else
         {
-            for (int k = 0; k < m; k++)
-            {
-                //para cada posição lugar que julius esteve veja quais são visinhos
-                //se algum desses lugares for visinho "eu vou estar la"
-                if (num_m[k] < n)
-                {
-                    if (lugares == vetor_n[num_m[k]][lugares])
-                    {
-                        printf("Eu vou estar la\n");
-                        posi = 1;
-                        break;
-                    }
-                }
-            }
-            if (posi == -1)
-                printf("Nao vou estar la\n");
+            printf("Nao vou estar la\n");
         }
     }
-    for (int i = 0; i < 2000; i++)
+    for (int i = 0; i < n; i++)
     {
         free(vetor_n[i]);
     }
     free(vetor_n);
     free(vetor_m);
+    free(num);
 
     return 0;
 }
