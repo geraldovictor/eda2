@@ -256,3 +256,9 @@ criar listas encadeadas na posição em que há colisões
 vetor proximo que estiver vazio (se tiver concentrado no final custa próximo de n)
 outra tabela Hash
 uma arvore binaria
+----------------------------------------------------------------
+
+Item SelectR(node *h, int k){
+  if(h==null) return NULL item;
+  int t = (h->l==NULL)? 0:h->l->n;
+  if(t>k) return 

@@ -2,6 +2,9 @@
 #include <stdlib.h>
 #include <string.h>
 
+int vetor_m[2000];
+int vetor_n[2000][2000];
+
 int main(int argc, char const *argv[])
 {
     int n, m, j, posi, lugares, num_aux;
@@ -9,16 +12,11 @@ int main(int argc, char const *argv[])
     int *num = malloc(n * sizeof(int));
     scanf("%d", &m); //lugares que ele ja esteve
     scanf("%d", &j); //lugar que ele vai visitar
-    int *vetor_m = malloc(2000 * sizeof(int));
-    int **vetor_n = malloc(n * sizeof(int *));
-
+    // int *vetor_m = malloc(2000 * sizeof(int));
+    // int **vetor_n = malloc(n * sizeof(int *));
     for (int i = 0; i < n; i++)
     {
         scanf("%d", &num[i]);
-        for (int k = 0; k < num[i]; k++)
-        {
-            vetor_n[i] = malloc(num[i] * sizeof(int));
-        }
         for (int k = 0; k < num[i]; k++)
         {
             scanf("%d", &vetor_n[i][k]);
@@ -38,7 +36,7 @@ int main(int argc, char const *argv[])
     {
         scanf("%d", &lugares);
         posi = 0;
-        if (vetor_m[lugares] != -1)
+        if (vetor_m[lugares] == lugares)
         {
             printf("Eu vou estar la\n");
         }
@@ -48,15 +46,15 @@ int main(int argc, char const *argv[])
             {
                 for (int k = 0; k < num[lugares]; k++)
                 {
-                    if (vetor_m[vetor_n[lugares][k]]!= -1){
-                       printf("Eu vou estar la\n");
-                       posi = 1;
-                       break; 
+                    if (vetor_m[vetor_n[lugares][k]] != -1)
+                    {
+                        printf("Eu vou estar la\n");
+                        posi = 1;
+                        break;
                     }
                 }
-                if(posi==0){
+                if (posi == 0)
                     printf("Nao vou estar la\n");
-                }
             }
             else
             {
@@ -64,13 +62,13 @@ int main(int argc, char const *argv[])
             }
         }
     }
-    for (int i = 0; i < n; i++)
-    {
-        free(vetor_n[i]);
-    }
-    free(vetor_n);
-    free(vetor_m);
-    free(num);
+    // for (int i = 0; i < n; i++)
+    // {
+    //     free(vetor_n[i]);
+    // }
+    // free(vetor_n);
+    // free(vetor_m);
+    // free(num);
 
     return 0;
 }
