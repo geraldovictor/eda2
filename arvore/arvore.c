@@ -32,7 +32,16 @@ tArvBin busca(tArvBin T, int dado)
 }
 int insereRaiz(tArvBin *T, int dado){
     tNo *novoNo;
-    if(T != NULL)
+    if(T != NULL) return 0;
+    novoNo = malloc (sizeof(tNo));
+    if(novoNo == NULL) return 0;
+    novoNo->conteudo = dado;
+    novoNo->esq = NULL;
+    novoNo->dir = NULL;
+   
+    *T = novoNo;
+
+    return 1;
 }
 int insereDir(tArvBin T, int vPai, int vFilho){
     tNo *f, *p, *novoNo;
