@@ -3,7 +3,7 @@
 
 typedef struct no
 {
-    int conteudo;
+    char conteudo;
     struct no *esq;
     struct no *dir;
 } tNo;
@@ -18,7 +18,7 @@ int vazia(tAbp T)
 {
     return (T == NULL);
 }
-tAbp busca(tAbp T, int dado)
+tAbp busca(tAbp T, char dado)
 {
     tAbp achou;
     if (T == NULL)
@@ -31,28 +31,28 @@ tAbp busca(tAbp T, int dado)
         return busca(T->dir, dado);
     return achou;
 }
-void imprimePreOrder(tArvBin T)
+void imprimePreOrder(tAbp T)
 {
     if (T == NULL)
         return;
 
-    printf("%d  ", T->conteudo);
-    if (T->esq != NULL)
-        imprimePreOrder(T->dir);
+    printf("%c  ", T->conteudo);
     if (T->esq != NULL)
         imprimePreOrder(T->esq);
+    if (T->dir != NULL)
+        imprimePreOrder(T->dir);
 }
-void imprimeInOrder(tArvBin T)
+void imprimeInOrder(tAbp T)
 {
     if (T == NULL)
         return;
     if (T->esq != NULL)
         imprimeInOrder(T->esq);
-    printf("%d  ", T->conteudo);
+    printf("%c  ", T->conteudo);
     if (T->dir != NULL)
         imprimeInOrder(T->dir);
 }
-void imprimePosOrder(tArvBin T)
+void imprimePosOrder(tAbp T)
 {
     if (T == NULL)
         return;
@@ -60,11 +60,9 @@ void imprimePosOrder(tArvBin T)
         imprimePosOrder(T->esq);
     if (T->dir != NULL)
         imprimePosOrder(T->dir);
-    printf("%d  ", T->conteudo);
+    printf("%c  ", T->conteudo);
 }
-tf("%d  ", T->conteudo);
-}
-int insereAbp(tAbp T, int dado)
+int insereAbp(tAbp T, char dado)
 {
     tNo *novoNo, *atual, *p;
     novoNo = malloc(sizeof(tNo));
@@ -93,21 +91,32 @@ int insereAbp(tAbp T, int dado)
     if (p->conteudo > dado)
         p->esq = novoNo;
     else
-        p->dir = novoNO;
+        p->dir = novoNo;
     return 1;
 }
 
-int insereNaoVazia(tAbp, int dado)
+int insereNaoVazia(tAbp *T, char dado)
 {
+    int ok;
     if (dado > (*T)->conteudo)
         ok = insereNaoVazia((&(*T)->dir), dado);
-    else if(dado < (*T)->conteudo)
+    else if (dado < (*T)->conteudo)
         ok = insereNaoVazia((&(*T)->esq), dado);
     return ok;
 }
 
 int main(int argc, char const *argv[])
 {
-
+    char dado;
+    tAbp arvore = malloc (sizeof(tAbp));
+    for(int i=97 ; i < 106; i++){
+        insereAbp(arvore,i);
+    }
+    imprimeInOrder(arvore);
+    printf("\n");
+    imprimePosOrder(arvore);
+    printf("\n");
+    imprimePreOrder(arvore);
+    printf("\n");
     return 0;
 }
