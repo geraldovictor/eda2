@@ -18,7 +18,19 @@ int vazia(tAbp T)
 {
     return (T == NULL);
 }
-tAbp busca(tAbp T, char dado)
+tAbp busca2(tAbp T, char dado)
+{
+    tAbp achou;
+    if (T == NULL)
+        return NULL;
+    if (T->conteudo == dado)
+        return T;
+    achou = busca2(T->esq, dado);
+    if (achou == NULL)
+        achou = busca2(T->dir, dado);
+    return achou;
+}
+tAbp busca1(tAbp T, char dado)
 {
     tAbp achou;
     if (T == NULL)
@@ -26,9 +38,9 @@ tAbp busca(tAbp T, char dado)
     if (T->conteudo == dado)
         return T;
     if (T->conteudo > dado)
-        return T = busca(T->esq, dado);
+        return T = busca1(T->esq, dado);
     else
-        return busca(T->dir, dado);
+        return busca1(T->dir, dado);
     return achou;
 }
 void imprimePreOrder(tAbp T)
@@ -68,8 +80,6 @@ int insereAbp(tAbp T, char dado)
     novoNo = malloc(sizeof(tNo));
     if (novoNo == NULL)
         return 0;
-    if (novoNo == NULL)
-        return 0;
     novoNo->conteudo = dado;
     novoNo->esq = NULL;
     novoNo->dir = NULL;
@@ -104,19 +114,90 @@ int insereNaoVazia(tAbp *T, char dado)
         ok = insereNaoVazia((&(*T)->esq), dado);
     return ok;
 }
+int insereRaiz(tAbp *T, char dado)
+{
+    tNo *novoNo;
+    if (*T != NULL)
+        return 0;
+    novoNo = malloc(sizeof(tNo));
+    if (novoNo == NULL)
+        return 0;
+    novoNo->conteudo = dado;
+    novoNo->esq = NULL;
+    novoNo->dir = NULL;
 
+    *T = novoNo;
+
+    return 1;
+}
+int insereDir(tAbp T, char vPai, char vFilho)
+{
+    tNo *f, *p, *novoNo;
+    f = busca2(T, vFilho);
+    if (f != NULL)
+        return 0;
+    p = busca2(T, vPai);
+    if (p == NULL)
+        return 0;
+    if (p->dir != NULL)
+        return 0;
+    novoNo = malloc(sizeof(tNo));
+    if (novoNo == NULL)
+        return 0;
+    novoNo->conteudo = vFilho;
+    novoNo->dir = NULL;
+    novoNo->esq = NULL;
+    p->dir = novoNo;
+    return 1;
+}
+int insereEsq(tAbp T, char vPai, char vFilho)
+{
+    tNo *f, *p, *novoNo;
+    f = busca2(T, vFilho);
+    if (f != NULL)
+        return 0;
+    p = busca2(T, vPai);
+    if (p == NULL)
+        return 0;
+    if (p->esq != NULL)
+        return 0;
+    novoNo = malloc(sizeof(tNo));
+    if (novoNo == NULL)
+        return 0;
+    novoNo->conteudo = vFilho;
+    novoNo->esq = NULL;
+    novoNo->dir = NULL;
+    p->esq = novoNo;
+    return 1;
+}
+tAbp 
 int main(int argc, char const *argv[])
 {
-    char dado;
-    tAbp arvore = malloc (sizeof(tAbp));
-    for(int i=97 ; i < 106; i++){
-        insereAbp(arvore,i);
+    char dado, pai, filho;
+    tAbp arvore = malloc(sizeof(tAbp));
+    criaArvore(&arvore);
+    insereRaiz(&arvore, 'h');
+    for (int i = 0; i < 11; i++)
+    {
+        scanf(" %c", &dado);
+        if (dado == 'd')
+        {
+            scanf(" %c", &pai);
+            scanf(" %c", &filho);
+            insereDir(arvore, pai, filho);
+        }
+        if (dado == 'e')
+        {
+            scanf(" %c", &pai);
+            scanf(" %c", &filho);
+            insereEsq(arvore, pai, filho);
+        }
     }
+    imprimePreOrder(arvore);
+    printf("\n");
     imprimeInOrder(arvore);
     printf("\n");
     imprimePosOrder(arvore);
-    printf("\n");
-    imprimePreOrder(arvore);
     printf("\n");
     return 0;
 }
