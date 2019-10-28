@@ -54,15 +54,18 @@ void imprimePreOrder(tAbp T)
     if (T->dir != NULL)
         imprimePreOrder(T->dir);
 }
-void imprimeInOrder(tAbp T)
+void imprimeInOrder(tAbp T, int valor)
 {
     if (T == NULL)
         return;
     if (T->esq != NULL)
-        imprimeInOrder(T->esq);
-    printf("%d ", T->conteudo);
+        imprimeInOrder(T->esq,valor);
+    if (T->conteudo == valor)
+        printf("*%d ", T->conteudo);
+    else
+        printf("%d ", T->conteudo);
     if (T->dir != NULL)
-        imprimeInOrder(T->dir);
+        imprimeInOrder(T->dir,valor);
 }
 void imprimePosOrder(tAbp T)
 {
@@ -181,12 +184,14 @@ int main(int argc, char const *argv[])
     while (scanf("%d", &dado) != EOF)
     {
         insereAbp(&arvore, dado);
+        imprimeInOrder(arvore,dado);
+        printf(".\n");
     }
-    imprimePreOrder(arvore);
-    printf(".\n");
-    imprimeInOrder(arvore);
-    printf(".\n");
-    imprimePosOrder(arvore);
-    printf(".\n");
+    // imprimePreOrder(arvore);
+    // printf(".\n");
+    // imprimeInOrder(arvore);
+    // printf(".\n");
+    // imprimePosOrder(arvore);
+    // printf(".\n");
     return 0;
 }
