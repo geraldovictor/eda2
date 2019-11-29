@@ -44,6 +44,34 @@ void TrocaCor(struct NO* H){
     if(H->dir != NULL)
         H->dir->cor = !H->dir->cor;
 }
+struct NO* move2EsqRED(struct NO* H){
+    TrocaCor(H);
+    if(cor(H->dir->esq) == RED) {
+        H->dir = rotacionaDireita(H->dir);
+        H = rotacionaEsquerda(H);
+        TrocaCor(H);
+    }
+    return H;
+}
+struct NO* move2DirRED(struct NO* H){
+    TrocaCor(H);
+    if(cor(H->esq->esq) == RED) {
+        H = rotacionaDireita(H);
+        TrocaCor(H);
+    }
+    return H;
+}
+struct NO* balancear(struct NO* H){
+    if(cor(H->dir) ==RED)
+        H = rotacionaEsquerda(H);
+
+    if(H->esq != NULL && cor(H->dir)== RED && cor(H->esq->esq) == RED)
+        H = rotacionaDireita(H);
+    if(cor(H->esq) == RED && cor(H->dir) == RED)
+        TrocaCor(H);
+    return H;
+    
+}
 
 int main(int argc, char const *argv[])
 {
