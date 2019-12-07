@@ -108,11 +108,12 @@ void visitaPConta(GRAFOLISTA *g, int u, int *cor, int *count)
     {
         if (cor[v->vertices] == BRANCO)
         {
-            visitaPConta(g, v->vertices, cor,count);
+            visitaPConta(g, v->vertices, cor, count);
         }
         v = v->prox;
     }
     cor[u] = VERMELHO;
+    *count += 1;
     //preciso contar só os nos que se conectam com alguem
 }
 void profundidade(GRAFOLISTA *g)
@@ -139,11 +140,7 @@ void profundidadeConta(GRAFOLISTA *g, int *count)
     {
         cor[u] = BRANCO;
     }
-    for (u = 0; u < g->vertices; u++)
-    {
-        if (cor[u] == BRANCO)
-            visitaPConta(g, u, cor, count);
-    }
+    visitaPConta(g, 0, cor, count);
 }
 void inicializaGrafoD(GRAFOLISTA *g, int *d, int *p, int s)
 {
@@ -197,7 +194,7 @@ int menorDist(GRAFOLISTA *g, int *aberto, int *d)
     }
     return (menor);
 }
-int* dijkstra(GRAFOLISTA *g, int s)
+int *dijkstra(GRAFOLISTA *g, int s)
 {
     int *d = malloc(g->vertices * sizeof(int));
     int p[g->vertices];
@@ -224,21 +221,24 @@ int* dijkstra(GRAFOLISTA *g, int s)
 }
 int main(int argc, char const *argv[])
 {
-    GRAFOLISTA *gr = criaGrafo(5);
-    
-    int count;
+    GRAFOLISTA *gr = criaGrafo(8);
+
+    int count = 0;
     criaAresta(gr, 0, 1, 2);
-    criaAresta(gr, 1, 2, 4);
-    criaAresta(gr, 2, 0, 12);
-    criaAresta(gr, 2, 4, 40);
-    criaAresta(gr, 3, 1, 3);
-    criaAresta(gr, 4, 3, 8);
+    criaAresta(gr, 1, 0, 2);
+    criaAresta(gr, 0, 2, 2);
+    criaAresta(gr, 2, 0, 2);
+
+    // criaAresta(gr, 1, 2, 4);
+    // criaAresta(gr, 2, 0, 12);
+    // criaAresta(gr, 2, 4, 40);
+    // criaAresta(gr, 3, 1, 3);
+    // criaAresta(gr, 4, 3, 8);
 
     imprimeGRAFO(gr);
     profundidadeConta(gr, &count);
     printf("Numero de vértices: %d", count);
 
-    
     // criaAresta(gr,0,1,10);
     // criaAresta(gr,0,2,5);
     // criaAresta(gr,2,1,3);
