@@ -225,33 +225,11 @@ int main(int argc, char const *argv[])
 
     int count = 0;
     criaAresta(gr, 0, 1, 2);
-    criaAresta(gr, 1, 0, 2);
-    criaAresta(gr, 0, 2, 2);
-    criaAresta(gr, 2, 0, 2);
 
-    // criaAresta(gr, 1, 2, 4);
-    // criaAresta(gr, 2, 0, 12);
-    // criaAresta(gr, 2, 4, 40);
-    // criaAresta(gr, 3, 1, 3);
-    // criaAresta(gr, 4, 3, 8);
-
+    
     imprimeGRAFO(gr);
     profundidadeConta(gr, &count);
     printf("Numero de vértices: %d", count);
 
-    // criaAresta(gr,0,1,10);
-    // criaAresta(gr,0,2,5);
-    // criaAresta(gr,2,1,3);
-    // criaAresta(gr,1,3,1);
-    // criaAresta(gr,2,3,8);
-    // criaAresta(gr,2,4,2);
-    // criaAresta(gr,4,5,6);
-    // criaAresta(gr,3,5,4);
-    // criaAresta(gr,3,4,4);
-    // int *r = dijkstra(gr,0);
-
-    // int i;
-    // for(i = 0 ;i<gr->vertices;i++)
-    //     printf("D(v0 -> v%d) = %d\n", i, r[i]);
     return 0;
 }
